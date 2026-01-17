@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import {APP_NAME} from "@/lib/constants";
+import MenuClient from "@/components/molecules/menu-client";
 export default function Header() {
   return (
     <header className="w-full sticky top-0 z-50 bg-background-2">
@@ -23,7 +24,9 @@ export default function Header() {
             </Link>
         </div>
 
-        <div>Right</div>
+        <div>
+          <MenuClient />
+        </div>
 
     
       </div>
