@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import {APP_NAME} from "@/lib/constants";
+import SigninOrAvatar from "../molecules/signin-avatar";
 import MenuClient from "@/components/molecules/menu-client";
 export default function Header() {
   return (
@@ -25,7 +26,7 @@ export default function Header() {
         </div>
 
         <div>
-          <MenuClient />
+          <MenuClient desktopAvatar={<SigninOrAvatar />} />
         </div>
 
     
