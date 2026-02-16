@@ -1,26 +1,42 @@
-import { bannerImageData } from "@/app/db/dummydb";
 import Image from "next/image";
+import next from "next";
+import { getBanners } from "@/lib/actions/settings.action";
+import { get } from "http";
  
-export default function DynamicBanner() {
-  // Get the first banner from the dummy data.
-  // In a real-world scenario, you might fetch this or receive it as a prop.
-  if(!bannerImageData || bannerImageData.length===0){
-    return <div className="w-full md:h-80 mt-5 h-64 lg:h-96 flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-500">Banner Image Not Found</div>;
+export default async function DynamicBanner() {
+  const result = await getBanners();
+ 
+  if (
+    !result.success ||
+    !result.data ||
+    result.data.banners.length === 0 ||
+    result.data.banners[0].imageUrl === "" ||
+    result.data.banners[0].imageUrl === null
+  ) {
+    return (
+      <div className="w-full text-gray-500 mt-5 h-64 md:h-80 lg:h-96 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+        Banner not available
+      </div>
+    );
   }
-  const banner = bannerImageData[0];
- 
-  
+  const banner = result.data.banners[0];
  
   return (
     <section className="relative w-full h-75 md:h-100 lg:h-125 overflow-hidden">
       {/* Background Image */}
-      <Image src={banner.imageUrl} alt={banner.name} fill className="object-cover" priority sizes="100vw"/>
- 
+      <Image
+        src={banner.imageUrl}
+        alt={banner.name}
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
+      />
       {/* Overlay */}
-      <div className="absolute inset-0  bg-black/50"></div>
+      <div className="absolute inset-0 bg-black/50"></div>
  
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center  p-4 z-10">
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-4 z-10">
         <h1 className="text-text-caption-2 text-center mb-6">
           Welcome to Highland Medical Center
         </h1>
