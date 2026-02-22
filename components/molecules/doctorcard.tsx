@@ -21,6 +21,7 @@ export default function DoctorCard({
   reviewCount,
   imageUrl,
 }: DoctorCardProps) {
+  
   return (
     <Card className="w-full flex flex-col gap-4 max-w-sm rounded-lg shadow-sm overflow-hidden bg-background p-6 border border-border-2">
       <CardContent className="p-0 w-full flex flex-col md:flex-row items-center gap-3 md:gap-4">

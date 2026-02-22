@@ -65,7 +65,7 @@ export default function Review({
           <StarRating rating={rating} />
         </div>
       </CardHeader>
-      <CardContent className="p-0 w-full bg-transparent overflow-hidden flex-grow">
+      <CardContent className="p-0 w-full bg-transparent overflow-hidden grow">
         <p className="body-regular text-text-body-subtle line-clamp-3">
           &ldquo;{testimonial}&rdquo;
         </p>
